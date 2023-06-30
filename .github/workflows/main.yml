@@ -1,4 +1,5 @@
 name: Deploy
+
 on:
   push:
     branches:
@@ -7,6 +8,7 @@ env:
   DOCKER_IMAGE: ghcr.io/${{ github.actor }}/personal-project-backend
   VERSION: ${{ github.sha }}
   NAME: personal-project-backend
+  
 jobs:
   build:
     name: Build
@@ -19,6 +21,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'zulu' # https://github.com/actions/setup-java
+          
       ## gradle caching
       - name: Gradle Caching
         uses: actions/cache@v3
@@ -32,9 +35,11 @@ jobs:
             
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+        
       ## gradle build
       - name: Build with Gradle
         run: ./gradlew clean build -x test
+        
       ## docker build & push to production
       - name: Docker build & push to prod
         run: |
@@ -42,6 +47,7 @@ jobs:
             docker buildx create --name arm64builder --use
             docker buildx build --platform linux/amd64,linux/arm64 -f Dockerfile -t ghcr.io/dusdn943/personal-project-backend:latest --push .
             docker logout
+            
   deploy:
     needs: build
     name: Deploy
@@ -53,6 +59,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
+          
       - name: Deploy to prod
         uses: appleboy/ssh-action@v0.1.10
         with:
