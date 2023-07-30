@@ -12,10 +12,11 @@ import com.example.demo.restaurant.dto.RestaurantResponse;
 import com.example.demo.restaurant.entity.Restaurant;
 
 @Repository
-public interface RestaurantRepository  extends JpaRepository<Restaurant, Long> {
+public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     Optional<Restaurant> findByAddress(String address);
 
     @Query("SELECT res FROM Restaurant res JOIN FETCH res.businessMember "
             + "WHERE res.businessMember.businessMemberId = :businessMemberId")
     List<Restaurant> findAllByBusinessMemberId(@Param("businessMemberId") long businessMemberId);
+
 }
