@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Objects;
+
 @Entity
 @Getter
 @ToString
@@ -30,5 +32,9 @@ public class BusinessMember {
         this.businessNumber = businessNumber;
         this.name = name;
         this.phoneNumber = phoneNumber;
+    }
+
+    public boolean validPassword(String password) {
+        return Objects.equals(this.password, password);
     }
 }
