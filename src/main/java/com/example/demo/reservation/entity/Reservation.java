@@ -59,5 +59,7 @@ public class Reservation {
     public void cancel() {
         this.isCanceled = true;
     }
-
+    public LocalDateTime getDateTime() {
+        return LocalDateTime.of(date, time);
+    }
 }
