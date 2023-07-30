@@ -1,6 +1,6 @@
 package com.example.demo.businessMember.service;
 
-import com.example.demo.businessMember.controller.form.BusinessMemberRegisterRequestForm;
+import com.example.demo.businessMember.dto.BusinessMemberRegisterRequest;
 import com.example.demo.businessMember.entity.BusinessMember;
 import com.example.demo.businessMember.repositroy.BusinessMemberRepository;
 import org.springframework.stereotype.Service;
@@ -16,13 +16,13 @@ public class BusinessMemberService {
         this.businessMemberRepository = businessMemberRepository;
     }
 
-    public void register(BusinessMemberRegisterRequestForm businessMemberRegisterRequestForm) {
-        Optional<BusinessMember> businessMember = businessMemberRepository.findByEmail(businessMemberRegisterRequestForm.getEmail());
+    public void register(BusinessMemberRegisterRequest req) {
+        Optional<BusinessMember> businessMember = businessMemberRepository.findByEmail(req.getEmail());
         if (businessMember.isPresent()) {
             throw new RuntimeException("이미 가입되어있는 이메일입니다!");
         }
 
-        businessMemberRepository.save(businessMemberRegisterRequestForm.toEntity());
+        businessMemberRepository.save(req.toEntity());
     }
 
 }

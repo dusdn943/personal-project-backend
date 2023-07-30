@@ -23,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class RestaurantService {
+
     private final RestaurantRepository restaurantRepository;
     private final ReservationService reservationService;
     private final BusinessMemberRepository businessMemberRepository;

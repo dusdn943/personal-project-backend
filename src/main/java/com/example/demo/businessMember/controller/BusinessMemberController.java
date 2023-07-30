@@ -1,6 +1,6 @@
 package com.example.demo.businessMember.controller;
 
-import com.example.demo.businessMember.controller.form.BusinessMemberRegisterRequestForm;
+import com.example.demo.businessMember.dto.BusinessMemberRegisterRequest;
 import com.example.demo.businessMember.service.BusinessMemberService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,9 +21,9 @@ public class BusinessMemberController {
         return "pong";
     }
 
-    @PostMapping("/business-member")
-    public void register(@RequestBody BusinessMemberRegisterRequestForm businessMemberRegisterRequestForm) {
-        System.out.println(businessMemberRegisterRequestForm);
-        businessMemberService.register(businessMemberRegisterRequestForm);
+    @PostMapping("/business-member/signup")
+    public void register(@RequestBody BusinessMemberRegisterRequest req) {
+        System.out.println(req);
+        businessMemberService.register(req);
     }
 }

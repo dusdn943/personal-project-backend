@@ -1,4 +1,4 @@
-package com.example.demo.businessMember.controller.form;
+package com.example.demo.businessMember.dto;
 
 import com.example.demo.businessMember.entity.BusinessMember;
 import lombok.Getter;
@@ -8,7 +8,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @RequiredArgsConstructor
-public class BusinessMemberRegisterRequestForm {
+public class BusinessMemberRegisterRequest {
 
     final private String email;
     final private String password;
