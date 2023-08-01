@@ -1,5 +1,9 @@
 package com.example.demo.review.entity;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.Where;
+
 import com.example.demo.reservation.entity.Reservation;
 
 import jakarta.persistence.Entity;
@@ -17,8 +21,8 @@ import lombok.ToString;
 @Getter
 @ToString
 @NoArgsConstructor
-
 public class Review {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reviewId;

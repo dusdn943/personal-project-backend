@@ -13,13 +13,15 @@ public class RestaurantResponse {
     final private String name;
     final private String address;
     final private String phoneNumber;
+    final private double starCount; // 평균 별점
 
-    public static RestaurantResponse from(Restaurant restaurant) {
+    public static RestaurantResponse from(Restaurant restaurant, double starCount) {
         return new RestaurantResponse(
                 restaurant.getRestaurantId(),
                 restaurant.getName(),
                 restaurant.getAddress(),
-                restaurant.getPhoneNumber()
+                restaurant.getPhoneNumber(),
+                starCount
         );
     }
 }
