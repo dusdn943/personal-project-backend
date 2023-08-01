@@ -17,21 +17,22 @@ import com.example.demo.common.type.MemberType;
 import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class BusinessMemberService {
 
     private final BusinessMemberRepository businessMemberRepository;
-    private JwtHelper jwtHelper;
+    private final JwtHelper jwtHelper;
 
-    public BusinessMemberService(BusinessMemberRepository businessMemberRepository) {
-        this.businessMemberRepository = businessMemberRepository;
-    }
 
     public void register(BusinessMemberRegisterRequest req) {
+        // 1. 해당 email 을 조건으로 하는 사업자가 있는지 DB 에서 조회한다. 있으면 에러를 발생시킨다.
         Optional<BusinessMember> businessMember = businessMemberRepository.findByEmail(req.getEmail());
         if (businessMember.isPresent()) {
             throw new RuntimeException("이미 가입되어있는 이메일입니다!");
         }
 
+        // 2. 사업자 정보를 DB 에 저장한다.
+        //    JPA Repository 는 저장할때 무조건 Entity 여야만한다.
         businessMemberRepository.save(req.toEntity());
     }
 
