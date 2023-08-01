@@ -20,3 +20,8 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: update
+
+oauth:
+  kakao:
+    client_id: "97fe89fa05edfe0818d582239a031a97"
+    redirect_uri: "http://localhost:7777/oauth2/kakao/callback"
